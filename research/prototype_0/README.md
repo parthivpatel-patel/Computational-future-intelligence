@@ -25,7 +25,7 @@ The standard query produces one possible exposure from the fictional supplier Ac
 
 For each finding the output records the source document, exact quote boundaries, publication and availability times, a SHA-256 fingerprint of the text, and the proposed relationship path. A fingerprint identifies the text processed during a run; it is not an independent guarantee that the publisher is authentic.
 
-Relationship quotations must explicitly support the declared direction of supply. An unsupported, conditional or negated relationship does not produce a finding. Candidate events are subject to conservative keyword rules and historical availability checks. Duplicate candidate paths are suppressed. The engine does not calculate financial impact or infer causality.
+Relationship quotations must explicitly support the declared direction of supply. An unsupported, conditional or negated relationship does not produce a finding. Candidate events use conservative disruption verbs, explicit company attribution patterns, and historical availability checks. A company merely commenting on another company's disruption is not enough to create an exposure finding. Duplicate candidate paths are suppressed. The engine does not calculate financial impact or infer causality.
 
 ## Engineering priorities
 

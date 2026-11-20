@@ -32,7 +32,7 @@ A citation includes its document ID, exact quote, start and end offsets, title, 
 
 A candidate supplier statement must identify both companies, assert a supply direction supported by a narrow syntactic rule, and avoid obvious negation or conditional language. This rejects many genuine statements, which is preferable to inventing an unsupported relationship at the research stage.
 
-Event detection uses a limited set of disruption verbs and rejects sentences containing common signals of negation, hypotheticals, plans and uncertainty. The classifier is intentionally conservative. It can miss true events and still misread complex syntax. It is not a semantic validation model.
+Event detection requires a narrow grammatical attribution between the named company and a disruption verb, or between the disruption verb and the company's affected operation. Mere co-mention of a company and a competitor's disruption is insufficient. It also rejects sentences containing common signals of negation, hypotheticals, plans and uncertainty. The classifier is intentionally conservative. It can miss true events and still misread complex syntax. It is not a semantic validation model.
 
 A finding ID is stable for the same company, supplier, document and event sentence. Multiple identical relationships do not produce repeated alerts. If independently documented relationships produce the same finding, a deterministic input ordering selects the first citation; a future version should retain all independent supporting sources rather than discard them.
 

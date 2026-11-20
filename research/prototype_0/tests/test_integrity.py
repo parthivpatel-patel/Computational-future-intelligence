@@ -87,6 +87,36 @@ class IntegrityTests(unittest.TestCase):
                 docs[1]["body"] = text
                 self.assertEqual(self.run_analysis(documents=docs)["findings"], [])
 
+    def test_a_reporter_is_not_the_disrupted_company(self):
+        misleading = (
+            "Acme Components reported that Rival Industries halted production "
+            "at its assembly plant."
+        )
+        docs = copy.deepcopy(self.docs)
+        docs[1]["body"] = misleading
+        self.assertEqual(self.run_analysis(documents=docs)["findings"], [])
+
+    def test_a_supplier_customer_is_not_the_disrupted_company(self):
+        docs = copy.deepcopy(self.docs)
+        docs[1]["body"] = (
+            "Acme Components customers halted production after a strike."
+        )
+        self.assertEqual(self.run_analysis(documents=docs)["findings"], [])
+
+    def test_direct_supplier_disruption_remains_detectable(self):
+        docs = copy.deepcopy(self.docs)
+        docs[1]["body"] = "Acme Components halted operations at its assembly plant."
+        result = self.run_analysis(documents=docs)
+        self.assertEqual(len(result["findings"]), 1)
+        self.assertEqual(result["findings"][0]["event"], docs[1]["body"])
+
+    def test_disrupted_supplier_operations_remain_detectable(self):
+        docs = copy.deepcopy(self.docs)
+        docs[1]["body"] = "An electrical fire disrupted Acme Components production."
+        result = self.run_analysis(documents=docs)
+        self.assertEqual(len(result["findings"]), 1)
+        self.assertEqual(result["findings"][0]["event"], docs[1]["body"])
+
     def test_exact_quotes_and_content_fingerprints(self):
         findings = self.run_analysis()["findings"]
         self.assertEqual(len(findings), 1)
