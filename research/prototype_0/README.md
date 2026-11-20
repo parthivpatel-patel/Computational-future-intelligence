@@ -1,48 +1,42 @@
-# Computational Future Intelligence — Research Prototype 0
+# Portfolio Blind Spot Intelligence: research baseline
 
-A **small, runnable, offline Python baseline** for the first Portfolio Blind Spot Intelligence workflow. This is a research starting point for the engineering team—not a production app, a trained model, or a customer-ready financial recommendation.
+This directory contains the first executable research component of Computational Future Intelligence. It demonstrates an evidence-backed portfolio exposure workflow with fictional companies, synthetic documents and deterministic extraction rules. The code is deliberately small enough to inspect end to end.
 
-## What it demonstrates
+It is not a trained machine learning model, a real-world risk monitor or a production service.
 
-1. Load a tiny portfolio and four **clearly synthetic** example documents.
-2. Reconstruct which documents were available at a requested historical time.
-3. Find a candidate operational disruption using an intentionally narrow keyword baseline.
-4. Join it to a **source-quoted, manually curated** supplier relationship.
-5. Output a possible indirect portfolio exposure with exact quote spans and provenance.
-6. **Abstain** if the relationship quote is missing, source timing is invalid, or evidence is unavailable.
+## Run locally or in Google Colab
 
-No third-party packages, API keys, or GPU are required. No external network calls occur.
+Python 3.10 or newer is sufficient. The baseline requires no third-party libraries, paid APIs, cloud credentials or GPU.
 
-## Run
-
-From this folder with Python 3.10+:
+From `research/prototype_0`:
 
 ```bash
 python prototype.py
 python prototype.py --as-of 2026-02-09T12:00:00Z
 python -m unittest discover -s tests -v
+python evaluate_baseline.py
 ```
 
-The first command should produce **one synthetic possible-exposure finding** (Acme Components → Northstar Pumps). The earlier as-of query should produce **zero findings**. This is **not a real-world risk alert**.
+The standard query produces one possible exposure from the fictional supplier Acme Components to the fictional portfolio company Northstar Pumps. The historical replay produces no finding because the incident document was not yet available. The third command runs automated tests. The final command checks the extraction rules against a small synthetic collection of labeled sentences.
 
-## Data contract
+## Data and output
 
-- `data/documents.json`: document ID, original-looking synthetic text, `published_at`, **`available_at`**, source URI, and data kind.
-- `data/relationships.json`: directed `supplies` relation with a quote that must match its source exactly.
-- `data/portfolio.json`: fictional portfolio holdings.
-- Output: source-backed findings, exact quote offsets, as-of cutoff, uncertainty disclaimer, and rejected unsupported claims.
+`data/documents.json` contains versioned document metadata, source text and separate publication and availability times. `data/relationships.json` contains manually curated supplier relationships with exact source quotes. `data/portfolio.json` contains fictional holdings. `data/sentence_cases.json` contains synthetic regression examples. None of these inputs contains verified investment research.
 
-## Next engineering tasks
+For each finding the output records the source document, exact quote boundaries, publication and availability times, a SHA-256 fingerprint of the text, and the proposed relationship path. A fingerprint identifies the text processed during a run; it is not an independent guarantee that the publisher is authentic.
 
-1. Replace keyword-only extraction with a **precision-tested** NLP pipeline (entity recognition, event detection and relation extraction); keep rule baseline as comparator.
-2. Add **real, rights-reviewed** SEC filings and other public sources as **separate datasets**, with ingestion metadata and publication/availability timestamps. Never claim Apple or another real company was affected by an unrelated event without a sourced path.
-3. Add typed Pydantic schemas, SQLite/PostgreSQL persistence, immutable source hashes, claim versioning, evidence review, and event deduplication.
-4. Add FastAPI endpoints only after the underlying extraction and evidence path are reproducible.
-5. Add evaluation sets with precision, false-positive rate, abstention, historical time-split performance, and manually reviewed errors.
-6. Extend the shared evidence schema for **prediction-market contract rules and settlement evidence**, keeping stock and event-contract products first-class.
+Relationship quotations must explicitly support the declared direction of supply. An unsupported, conditional or negated relationship does not produce a finding. Candidate events are subject to conservative keyword rules and historical availability checks. Duplicate candidate paths are suppressed. The engine does not calculate financial impact or infer causality.
 
-## Known limitations
+## Engineering priorities
 
-The example companies, relationships, and incidents are fictional. Keyword rules can miss valid events, misunderstand negation, and produce false positives; synthetic relation quotes are not independent verification. The current program does not discover arbitrary supplier links, infer causality, calculate probabilities, or offer real investing recommendations. Do **not** use outputs to trade. A genuine pilot requires real-source acquisition, licensed use checks, entity resolution, evaluation, and human review.
+1. Establish a licensed, reproducible ingestion process for actual SEC filings, including source identity, availability time, revisions and original document hashes.
+2. Build an independently labeled set of event and relationship examples. Measure false alerts, missed events and evidence errors against a simple baseline before introducing NLP models.
+3. Add typed data contracts, database persistence, verified entity identities and reviewable claim states.
+4. Expose the engine through FastAPI after the extraction and evidence contracts stabilize.
+5. Extend the shared evidence and time model to prediction-market contract definitions and resolution sources.
 
-See [`docs/REAL_DOCUMENTS.md`](docs/REAL_DOCUMENTS.md) for verified public filing examples and source access guidance. Repository is public: **do not commit customer portfolios, API keys, non-public evidence, or confidential internal business plans.**
+The research baseline currently rejects non-synthetic document inputs by design. A real-source ingestion adapter should perform separate rights checks and provenance validation rather than weakening that boundary.
+
+See [Engineering notes](docs/ENGINEERING_NOTES.md) and [Candidate public source documents](docs/REAL_DOCUMENTS.md).
+
+This is a public repository. Do not commit customer portfolios, account credentials, unpublished business plans or confidential datasets.
