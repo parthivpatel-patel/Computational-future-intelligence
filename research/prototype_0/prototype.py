@@ -151,15 +151,41 @@ def citation(document: dict[str, Any], quote: str) -> dict[str, Any] | None:
     }
 
 
+def _disruption_is_about(sentence: str, subject: str) -> bool:
+    """Use narrow grammatical patterns to attribute a disruption to the named firm.
+
+    A company appearing somewhere in a disruption sentence is not sufficient:
+    another firm may be the one whose operations were interrupted. Unknown
+    constructions are intentionally left for human review.
+    """
+    entity = _entity_pattern(subject).pattern
+    verb = EVENT_VERBS.pattern
+    operation = r"(?:production|operations|manufacturing|plant|facility|shipments|deliveries)"
+    auxiliaries = (
+        r"(?:(?:has|have|had|was|were|is|been|temporarily|partially|recently)"
+        r"\s+){0,3}"
+    )
+
+    direct = re.compile(
+        entity + r"(?:['’]s)?\s+(?:" + operation + r"\s+)?"
+        + auxiliaries + verb,
+        re.IGNORECASE,
+    )
+    affected_operation = re.compile(
+        verb + r"\s+" + entity + r"(?:['’]s)?\s+" + operation + r"\b",
+        re.IGNORECASE,
+    )
+    return bool(direct.search(sentence) or affected_operation.search(sentence))
+
+
 def event_sentences(document: dict[str, Any], subject: str) -> list[str]:
-    """Find explicitly asserted supplier disruptions using a transparent rule baseline."""
-    if not subject.strip():
+    """Find asserted disruptions attributable to the specified company."""
+    if not isinstance(subject, str) or not subject.strip():
         raise ValueError("The subject name cannot be empty")
     sentences = SENTENCE_BOUNDARY.split(document["body"].strip())
     return [
         sentence for sentence in sentences
-        if _includes_entity(sentence, subject)
-        and EVENT_VERBS.search(sentence)
+        if _disruption_is_about(sentence, subject)
         and not NON_ASSERTIVE.search(sentence)
     ]
 
