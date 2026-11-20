@@ -1,0 +1,38 @@
+[
+  {
+    "id": "synthetic-supplier-note",
+    "title": "SYNTHETIC: Northstar Pumps supplier note",
+    "url": "synthetic://supplier-note",
+    "data_kind": "synthetic_example",
+    "published_at": "2026-01-15T09:00:00Z",
+    "available_at": "2026-01-15T11:00:00Z",
+    "body": "Northstar Pumps purchases precision valves from Acme Components. The supply relationship is described here solely for a synthetic software test."
+  },
+  {
+    "id": "synthetic-plant-event",
+    "title": "SYNTHETIC: Acme Components plant interruption",
+    "url": "synthetic://plant-event",
+    "data_kind": "synthetic_example",
+    "published_at": "2026-02-10T08:00:00Z",
+    "available_at": "2026-02-10T09:00:00Z",
+    "body": "A fire disrupted Acme Components production at its fictional Harbor City facility. The duration of the interruption is unknown."
+  },
+  {
+    "id": "synthetic-unrelated-story",
+    "title": "SYNTHETIC: unrelated logistics update",
+    "url": "synthetic://unrelated-update",
+    "data_kind": "synthetic_example",
+    "published_at": "2026-02-11T10:00:00Z",
+    "available_at": "2026-02-11T10:30:00Z",
+    "body": "Metro Harbor Freight announced a new regional distribution office. This does not establish an exposure to Northstar Pumps."
+  },
+  {
+    "id": "synthetic-future-note",
+    "title": "SYNTHETIC: later follow-up not yet available at the sample cutoff",
+    "url": "synthetic://future-note",
+    "data_kind": "synthetic_example",
+    "published_at": "2026-02-13T08:00:00Z",
+    "available_at": "2026-02-13T09:00:00Z",
+    "body": "Acme Components suspended additional shipments for inspection. This fact must not appear in the February 12 historical replay."
+  }
+]

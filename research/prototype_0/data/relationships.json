@@ -1,0 +1,10 @@
+[
+  {
+    "supplier_id": "acme-components",
+    "supplier_name": "Acme Components",
+    "buyer_id": "northstar-pumps",
+    "relation_type": "supplies",
+    "source_document_id": "synthetic-supplier-note",
+    "source_quote": "Northstar Pumps purchases precision valves from Acme Components."
+  }
+]
