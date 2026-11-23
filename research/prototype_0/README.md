@@ -40,3 +40,7 @@ The research baseline currently rejects non-synthetic document inputs by design.
 See [Engineering notes](docs/ENGINEERING_NOTES.md) and [Candidate public source documents](docs/REAL_DOCUMENTS.md).
 
 This is a public repository. Do not commit customer portfolios, account credentials, unpublished business plans or confidential datasets.
+
+## Real document experiments
+
+The [real document collection](real_documents/README.md) contains original source links, acquisition instructions, historical metadata and a separate local download utility. Keep these experiments separate from the synthetic regression fixtures.

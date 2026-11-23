@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "notes": "Source acceptance times are not verified first availability times. Publication dates without a time remain date precision. Retrieval timestamps are written only when original bytes are acquired. All sources are historical, and no file is labeled as a verified model input until acquisition and rights review are recorded.",
+  "sources": [
+    {
+      "id": "crwd_2024_8k",
+      "title": "CrowdStrike Holdings, Inc. Form 8-K",
+      "publisher": "CrowdStrike Holdings, Inc.",
+      "format": "html",
+      "filename": "crowdstrike_2024_07_22_8k.html",
+      "url": "https://www.sec.gov/Archives/edgar/data/1535527/000110465924081571/tm2419936d1_8k.htm",
+      "index_url": "https://www.sec.gov/Archives/edgar/data/1535527/000110465924081571/0001104659-24-081571-index.html",
+      "filing_date": "2024-07-22",
+      "accepted_at": "2024-07-22T17:27:44-04:00",
+      "event_date": "2024-07-19",
+      "case_id": "technology_outage",
+      "purpose": "Extract the reported software update and outage; do not infer the identity of affected customers without further evidence."
+    },
+    {
+      "id": "dal_2024_8k",
+      "title": "Delta Air Lines, Inc. Form 8-K",
+      "publisher": "Delta Air Lines, Inc.",
+      "format": "html",
+      "filename": "delta_2024_08_08_8k.html",
+      "url": "https://www.sec.gov/Archives/edgar/data/27904/000168316824005369/delta_8k.htm",
+      "index_url": "https://www.sec.gov/Archives/edgar/data/27904/0001683168-24-005369-index.htm",
+      "filing_date": "2024-08-08",
+      "accepted_at": "2024-08-08T15:00:37-04:00",
+      "event_date": "2024-07-19",
+      "case_id": "technology_outage",
+      "purpose": "Extract Delta's account of the operational disruption and distinguish its statements about financial impact from independently verified losses."
+    },
+    {
+      "id": "dal_2024_10k",
+      "title": "Delta Air Lines, Inc. 2024 Form 10-K",
+      "publisher": "Delta Air Lines, Inc.",
+      "format": "html",
+      "filename": "delta_2024_10k.html",
+      "url": "https://www.sec.gov/Archives/edgar/data/27904/000002790425000004/dal-20241231.htm",
+      "index_url": "https://www.sec.gov/Archives/edgar/data/27904/000002790425000004/0000027904-25-000004-index.htm",
+      "filing_date": "2025-02-11",
+      "accepted_at": "2025-02-11T17:02:24-05:00",
+      "event_date": "2024-07-19",
+      "case_id": "technology_outage",
+      "purpose": "Compare the annual disclosure to earlier current reports; separate general risk language from historical events."
+    },
+    {
+      "id": "crwd_2025_ars",
+      "title": "CrowdStrike Holdings, Inc. fiscal 2025 annual report to security holders",
+      "publisher": "CrowdStrike Holdings, Inc.",
+      "format": "pdf",
+      "filename": "crowdstrike_fy2025_annual_report.pdf",
+      "url": "https://www.sec.gov/Archives/edgar/data/1535527/000110465925045058/tm254459d2_ars.pdf",
+      "index_url": "https://www.sec.gov/Archives/edgar/data/1535527/000110465925045058/0001104659-25-045058-index.htm",
+      "filing_date": "2025-05-06",
+      "accepted_at": "2025-05-06T16:18:29-04:00",
+      "event_date": "2024-07-19",
+      "case_id": "technology_outage",
+      "purpose": "Test long PDF extraction, risk factors, named technology providers, and the distinction between incident costs, allegations and contingent losses."
+    },
+    {
+      "id": "ustr_2024_sep",
+      "title": "USTR Section 301 modification notice, 89 FR 76581",
+      "publisher": "Office of the United States Trade Representative",
+      "format": "pdf",
+      "filename": "ustr_2024_09_18_2024_21217.pdf",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2024-09-18/pdf/2024-21217.pdf",
+      "index_url": "https://www.govinfo.gov/app/details/FR-2024-09-18/2024-21217",
+      "publication_date": "2024-09-18",
+      "accepted_at": null,
+      "event_date": null,
+      "case_id": "trade_policy",
+      "purpose": "Extract policy action, tariff schedules, affected products and effective dates. Distinguish proposed changes from determinations."
+    },
+    {
+      "id": "ustr_2024_dec",
+      "title": "USTR Section 301 modification notice, 89 FR 101682",
+      "publisher": "Office of the United States Trade Representative",
+      "format": "pdf",
+      "filename": "ustr_2024_12_16_2024_29462.pdf",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2024-12-16/pdf/2024-29462.pdf",
+      "index_url": "https://www.govinfo.gov/app/details/FR-2024-12-16/2024-29462",
+      "publication_date": "2024-12-16",
+      "accepted_at": null,
+      "event_date": null,
+      "case_id": "trade_policy",
+      "purpose": "Compare final changes with the earlier proposal and extract product classifications and the January 1, 2025 effective date."
+    }
+  ]
+}
